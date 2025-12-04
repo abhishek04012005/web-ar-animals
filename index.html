@@ -8,77 +8,6 @@
     <script src="https://unpkg.com/aframe-html-shader@1.5.0/dist/aframe-html-shader.min.js"></script>
     <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
 
-
-
-
-    <!-- <script>
-        AFRAME.registerSystem('loading-screen', {
-            init: function () {
-                this.loadingScreen = document.querySelector('#loading-screen');
-                this.progressText = document.querySelector('#loading-progress');
-                this.loadedAssets = 0;
-                this.totalModels = document.querySelectorAll('a-entity[gltf-model]').length;
-                this.totalSounds = document.querySelectorAll('a-sound').length;
-                this.totalAssets = this.totalModels + this.totalSounds;
-
-                // Track model loading
-                const modelEntities = document.querySelectorAll('a-entity[gltf-model]');
-                modelEntities.forEach(entity => {
-                    entity.addEventListener('model-loaded', () => this.assetLoaded('model'));
-                });
-
-                // Track audio loading
-                const soundEntities = document.querySelectorAll('a-sound');
-                soundEntities.forEach(sound => {
-                    sound.addEventListener('sound-loaded', () => this.assetLoaded('sound'));
-                });
-
-                // Fallback timeout
-                setTimeout(() => {
-                    this.hideLoadingScreen();
-                }, 5000);
-            },
-
-            assetLoaded: function (type) {
-                this.loadedAssets++;
-                const progress = Math.round((this.loadedAssets / this.totalAssets) * 100);
-
-                if (this.progressText) {
-                    this.progressText.textContent = `${progress}%`;
-                }
-                console.log(`Loaded ${type}: ${this.loadedAssets}/${this.totalAssets} (${progress}%)`);
-
-                if (this.loadedAssets >= this.totalAssets) {
-                    this.hideLoadingScreen();
-                }
-            },
-
-            hideLoadingScreen: function () {
-                if (this.loadingScreen && this.loadingScreen.style.display !== 'none') {
-                    console.log('All resources loaded, hiding loading screen');
-                    this.loadingScreen.style.display = 'none';
-                }
-            }
-        });
-
-        // Add error handling for model and sound loading
-        AFRAME.registerComponent('asset-error', {
-            init: function () {
-                this.el.addEventListener('model-error', (e) => {
-                    console.error('Model loading failed:', e.detail.src);
-                });
-
-                if (this.el.components.sound) {
-                    this.el.addEventListener('sound-error', (e) => {
-                        console.error('Sound loading failed:', e.detail.src);
-                    });
-                }
-            }
-        });
-    </script> -->
-
-
-
     <script>
         AFRAME.registerSystem('loading-screen', {
             init: function () {
@@ -396,17 +325,15 @@
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false; patternRatio:0.80" gesture-detector
         renderer="antialias: true; colorManagement: true; physicallyCorrectLights: true;">
 
-
         <a-light type="ambient" intensity="4"></a-light>
         <a-light type="directional" position="1 1 1" intensity="4" color="#FFF">
         </a-light>
-
 
         <!-- Apple -->
         <a-marker id="apple-marker" marker-sound persistent-marker type="pattern"
             smooth="smoothCount: 10; smoothTolerance: 0.01; smoothThreshold: 2"
             url="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/pattern-apple.patt?v=1742372195501">
-            <a-entity asset-error position="0 0 0" scale="0.03 0.03 0.03" rotation="-90 0 0" animation-mixer
+            <a-entity asset-error position="0 0 0" scale="1 1 1" rotation="-90 0 0" animation-mixer
                 class="clickable" gesture-handler="minScale: 0.05; maxScale: 10; rotationFactor: 5"
                 gltf-model="https://raw.githubusercontent.com/abhishek04012005/ar-animals-assets/refs/heads/main/black_panther.glb">
             </a-entity>
@@ -414,7 +341,6 @@
                 src="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/A.mp3?v=1742413840505"
                 autoplay="false" loop="false" position="0 0 0" volume="7.0"></a-sound>
         </a-marker>
-
 
         <!-- Butterfly -->
         <a-marker id="butterfly" marker-sound persistent-marker type="pattern"
@@ -428,7 +354,6 @@
                 src="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/Butterfly.mp3?v=1742415131349"
                 autoplay="false" loop="false" position="0 0 0" volume="7.0"></a-sound>
         </a-marker>
-
 
         <a-entity camera></a-entity>
     </a-scene>
