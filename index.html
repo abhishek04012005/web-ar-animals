@@ -88,7 +88,7 @@
                 this.totalModels = document.querySelectorAll('a-entity[gltf-model]').length;
                 this.totalSounds = document.querySelectorAll('a-sound').length;
                 this.totalAssets = this.totalModels + this.totalSounds;
-        
+
                 // Track model loading
                 const modelEntities = document.querySelectorAll('a-entity[gltf-model]');
                 modelEntities.forEach(entity => {
@@ -99,7 +99,7 @@
                         this.handleAssetError('model');
                     });
                 });
-        
+
                 // Track audio loading
                 const soundEntities = document.querySelectorAll('a-sound');
                 soundEntities.forEach(sound => {
@@ -111,31 +111,31 @@
                     });
                 });
             },
-        
+
             assetLoaded: function (type) {
                 this.loadedAssets++;
                 const progress = Math.round((this.loadedAssets / this.totalAssets) * 100);
-        
+
                 if (this.progressText) {
                     this.progressText.textContent = `${progress}%`;
                 }
                 console.log(`Loaded ${type}: ${this.loadedAssets}/${this.totalAssets} (${progress}%)`);
-        
+
                 if (this.loadedAssets >= this.totalAssets) {
                     this.hideLoadingScreen();
                 }
             },
-        
+
             handleAssetError: function (type) {
                 console.error(`Failed to load ${type}. Updating total assets count.`);
                 this.totalAssets--;
-                
+
                 // Check if we should hide loading screen even with some failed assets
                 if (this.loadedAssets >= this.totalAssets) {
                     this.hideLoadingScreen();
                 }
             },
-        
+
             hideLoadingScreen: function () {
                 if (this.loadingScreen && this.loadingScreen.style.display !== 'none') {
                     console.log('All resources loaded, hiding loading screen');
@@ -143,8 +143,8 @@
                 }
             }
         });
-        </script>
-    
+    </script>
+
 
     <script>
         AFRAME.registerComponent('marker-sound', {
@@ -408,7 +408,7 @@
             url="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/pattern-apple.patt?v=1742372195501">
             <a-entity asset-error position="0 0 0" scale="0.03 0.03 0.03" rotation="-90 0 0" animation-mixer
                 class="clickable" gesture-handler="minScale: 0.05; maxScale: 10; rotationFactor: 5"
-                gltf-model="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/apple2.0.glb?v=1742400660303">
+                gltf-model="https://raw.githubusercontent.com/abhishek04012005/ar-animals-assets/refs/heads/main/black_panther.glb">
             </a-entity>
             <a-sound asset-error
                 src="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/A.mp3?v=1742413840505"
@@ -417,7 +417,7 @@
 
 
         <!-- Butterfly -->
-        <a-marker id="ball-marker" marker-sound persistent-marker type="pattern"
+        <a-marker id="butterfly" marker-sound persistent-marker type="pattern"
             smooth="smoothCount: 10; smoothTolerance: 0.01; smoothThreshold: 2"
             url="https://cdn.glitch.global/6311379f-f618-45ed-b172-9477e7695553/pattern-butterfly.patt?v=1742372191200">
             <a-entity asset-error position="0 0 0" scale="0.025 0.025 0.025" rotation="-90 0 0" animation-mixer
